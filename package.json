@@ -1,0 +1,12 @@
+{
+  "name": "wdio_web_test_framework",
+  "devDependencies": {
+    "@wdio/local-runner": "^8.32.3",
+    "@wdio/mocha-framework": "^8.32.3",
+    "@wdio/spec-reporter": "^8.32.2",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "wdio": "wdio run ./wdio.conf.ts"
+  }
+}
