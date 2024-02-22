@@ -13,31 +13,29 @@ export const config: Options.Testrunner = {
             transpileOnly: true
         }
     },
-    
-    //
-    // ==================
-    // Specify Test Files
-    // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // of the configuration file being run.
-    //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
-    // process simply enclose them in an array within the specs array.
-    //
-    // The path of the spec files will be resolved relative from the directory of
-    // of the config file unless it's absolute.
-    //
+
     specs: [
-        // ToDo: define location for spec files here
         './test/specs/**/*.ts'
     ],
+
+    suites: {
+        smoke: [
+            'test/specs/home.page.test.ts',
+            'test/specs/login.page.test.ts'
+        ],
+        regression: [
+            'test/specs/home.page.test.ts',
+            'test/specs/login.page.test.ts'
+        ],
+        uat: ['test/specs/home.page.test.ts'],
+        sanity: ['test/specs/login.page.test.ts']
+    },
+
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
     ],
-    //
+
     // ============
     // Capabilities
     // ============
@@ -119,7 +117,7 @@ export const config: Options.Testrunner = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'mocha',
-    
+
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -133,7 +131,14 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: [
+        'spec',
+        ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+        }]
+    ],
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -236,8 +241,11 @@ export const config: Options.Testrunner = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: async function ({ error }) {
+        if (error) {
+            await browser.takeScreenshot();
+        }
+    },
 
 
     /**
