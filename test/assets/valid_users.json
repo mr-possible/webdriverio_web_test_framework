@@ -1,0 +1,14 @@
+{
+    "users": [
+        {
+            "env": "qa",
+            "username": "standard_user",
+            "password": "secret_sauce"
+        },
+        {
+            "env": "dev",
+            "username": "visual_user",
+            "password": "secret_sauce"
+        }
+    ]
+}
