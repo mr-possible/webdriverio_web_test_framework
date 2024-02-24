@@ -1,6 +1,5 @@
 import type { Options } from '@wdio/types'
 export const config: Options.Testrunner = {
-    //
     // ====================
     // Runner Configuration
     // ====================
@@ -57,9 +56,19 @@ export const config: Options.Testrunner = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://saucelabs.com/platform/platform-configurator
     //
-    capabilities: [{
-        browserName: 'chrome'
-    }],
+    capabilities: [
+        {                        
+            maxInstances: 1,
+            browserName: 'chrome',
+            acceptInsecureCerts: true,
+            'goog:chromeOptions': {
+                args: [
+                    '--disable-gpu',
+                    '--disable-dev-shm-usage'
+                ]
+            }
+        }
+    ],
 
     //
     // ===================
