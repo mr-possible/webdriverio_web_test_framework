@@ -42,4 +42,4 @@ services:
       - Env=qa
       - HOST=grid-hub
     volumes:
-      - ./allure-results:/app/allure-results
+      - ./app/allure-results:./app/allure-results
