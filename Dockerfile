@@ -12,4 +12,4 @@ RUN npm install @wdio/cli
 COPY ./test ./test
 COPY tsconfig.json wdio.conf.ts wdio.remote.conf.ts ./
 
-CMD npm run test
+CMD npm run test:remote
