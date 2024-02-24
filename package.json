@@ -5,13 +5,12 @@
     "@wdio/local-runner": "^8.32.3",
     "@wdio/mocha-framework": "^8.32.3",
     "@wdio/spec-reporter": "^8.32.2",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "wdio-docker-service": "^3.2.1"
   },
   "scripts": {
-    "sanity": "npx wdio run ./wdio.conf.ts --suite sanity",
-    "uat": "npx wdio run ./wdio.conf.ts --suite uat",
-    "smoke": "npx wdio run ./wdio.conf.ts --suite smoke",
-    "regression": "npx wdio run ./wdio.conf.ts --suite regression",
-    "allure": "allure generate allure-results --clean && allure open"
+    "test:local": "wdio run ./wdio.conf.ts",
+    "test:remote": "wdio run ./wdio.remote.conf.ts",
+    "generate:allure": "allure generate allure-results --clean && allure open"
   }
 }
