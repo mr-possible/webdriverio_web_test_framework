@@ -6,6 +6,6 @@
 
 2. Run `Env=qa npm run test:local`. You can also give `Env` as either `dev` or `prod`. I have anyways kept same url for all the environments for demonstration purposes.
 
-Small note: I am currently exploring to efficiently run this on CI/CD setup as I am facing issues with running test cases on docker container.
+Small note: I am currently exploring to efficiently run this on CI/CD setup as I am facing issues with running wdio test cases on docker container because the base image that official docs asks us to use, is obsolete and archived. It is creating problems with internal infrastructure configuration.
 
 
