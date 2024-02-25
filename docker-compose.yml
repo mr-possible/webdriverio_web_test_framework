@@ -40,6 +40,6 @@ services:
       - firefox
     environment:
       - Env=qa
-      - HOST=grid-hub
+      - HOST=selenium-hub
     volumes:
       - ./app/allure-results:./app/allure-results
