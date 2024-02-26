@@ -3,13 +3,14 @@ import saucedemoHome from "../pageobjects/saucedemo.home"
 import data from "../utils/data"
 
 describe("Feature: SauceDemo Login Feature", () => {
-    for (const cred of new data().valid_credentials_testdata) {
-        it("Test Valid Login", async () => {
+
+    it("Test Valid Login", async () => {
+        for (const cred of new data().valid_credentials_testdata) {
             await browser.url("https://www.saucedemo.com/")
             await saucedemoLogin.performUserLogin(cred.username, cred.password)
             await expect(await saucedemoHome.headerProductPage).toBeDisplayed()
-        })
-    }
+        }
+    })
 
     it("Test Invalid Login", async () => {
         for (const cred of new data().invalid_credentials_testdata) {
